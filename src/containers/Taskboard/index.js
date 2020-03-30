@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 import * as taskAction from './../../actions/task';
 // import { toast } from 'react-toastify';
 // import Box from '@material-ui/core/Box';
+import SearchBox from '../../components/SearchBox';
 
 class Taskboard extends Component {
   state = {
@@ -49,6 +50,22 @@ class Taskboard extends Component {
       </Grid>
     );
     return xhtml;
+
+  }
+
+  handleFilter = e => {
+    const { value } = e.target;
+    const { taskActionCreators } = this.props;
+    const { filterTask } = taskActionCreators;
+    filterTask(value);
+  }
+
+  renderSearchBox() {
+    let xhtml = null;
+    xhtml = (
+      <SearchBox handleChange={this.handleFilter}/>
+    )
+    return xhtml;
   }
 
   render() {
@@ -64,6 +81,7 @@ class Taskboard extends Component {
             Hiển Thị Thông Báo
           </Button>
         </Box> */}
+        {this.renderSearchBox()}
         {this.renderBoard()}
         <TaskForm open={this.state.open} handleClose={this.handleClose} />
       </div>

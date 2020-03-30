@@ -26,13 +26,27 @@ export const fetchListTaskFailed = (error) => {
 };
 
 
-export const fetchListTaskRequest = () => {
-  return dispatch => {
-    dispatch(fetchListTask());
-    taskApis.getList().then(res => {
-      dispatch(fetchListTaskSuccess(res.data));
-    }).catch(err => {
-      dispatch(fetchListTaskFailed(err));
-    });
+// export const fetchListTaskRequest = () => {
+//   return dispatch => {
+//     dispatch(fetchListTask());
+//     taskApis.getList().then(res => {
+//       dispatch(fetchListTaskSuccess(res.data));
+//     }).catch(err => {
+//       dispatch(fetchListTaskFailed(err));
+//     });
+//   }
+// };
+
+export const filterTask = keyword => ({
+  type: taskConstants.FILTER_TASK,
+  payload: {
+    keyword,
   }
-};
+});
+
+export const filterTaskSuccess = data => ({
+  type: taskConstants.FILTER_TASK_SUCCESS,
+  payload: {
+    data,
+  }
+});
