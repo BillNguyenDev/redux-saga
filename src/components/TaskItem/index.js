@@ -14,7 +14,7 @@ class TaskItem extends Component {
         return (
             <Card key={id} className={classes.card}>
                 <CardContent>
-                    <Grid container justify="space-betwen">
+                    <Grid container justify="space-between">
                         <Grid item md={8}>
                             <Typography component="h3">
                                 {title}
@@ -24,7 +24,7 @@ class TaskItem extends Component {
                             {status.label}
                         </Grid>
                     </Grid>
-                    <p>{description}</p> 
+                    <p>{description}</p>
                 </CardContent>
                 <CardActions className={classes.cardActions}>
                     <Fab color="primary" aria-label="Edit" className={classes.fab} size="small">
@@ -32,7 +32,7 @@ class TaskItem extends Component {
                             edit
                         </span>
                     </Fab>
-                    <Fab color="primary" aria-label="Edit" className={classes.fab} size="small">
+                    <Fab color="secondary" aria-label="Edit" className={classes.fab} size="small">
                         <span className="material-icons">
                             delete
                         </span>

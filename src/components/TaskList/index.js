@@ -14,7 +14,7 @@ class TaskList extends Component {
                     <div className={classes.status}>{status.label}</div>
                 </Box>
                 <div className={classes.wrapperListTask}>
-                    {task.map(task => <TaskItem task={task} status={status} />)}
+                    {task.map((task,index) => <TaskItem task={task} status={status} key={index} />)}
                 </div>
 
             </Grid>

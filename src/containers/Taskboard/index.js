@@ -4,73 +4,83 @@ import styles from './styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { STATUSES } from "./../../constants";
-
-import Box from '@material-ui/core/Box';
 import TaskList from './../../components/TaskList';
 import TaskForm from './../../components/TaskForm';
-const listTask = [
-    {
-        id: 1,
-        title: "Read book",
-        description: "Read material ui book",
-        status: 0
-    },
-    {
-        id: 2,
-        title: "Play football",
-        description: "With my friend",
-        status: 2
-    },
-    {
-        id: 3,
-        title: "Play game",
-        description: "",
-        status: 1
-    }
-];
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as taskAction from './../../actions/task';
+// import { toast } from 'react-toastify';
+// import Box from '@material-ui/core/Box';
 
 class Taskboard extends Component {
-    state = {
-        open: false
-    }
-    openForm = () => {
-        this.setState({ open: true });
-    }
-    handleClose = () => {
-        this.setState({ open: false });
-    }
-    renderBoard() {
-        let xhtml = null;
-        xhtml = (
-            <Grid container spacing={2}>
-                {
-                    STATUSES.map(status => {
-                        const taskFilltered = listTask.filter(task => task.status === status.value);
-                        return (
-                            <TaskList task={taskFilltered} status={status} />
-                        );
-                    })
-                }
-            </Grid>
-        );
-        return xhtml;
-    }
+  state = {
+    open: false
+  }
 
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className={classes.taskboard}>
-                <Button variant="contained" color="primary" onClick={this.openForm}>
-                    <span className="material-icons">
-                        add
-                    </span>
-                    Thêm công việc mới!
-                </Button>
-                {this.renderBoard()}
-                <TaskForm open={this.state.open} handleClose={this.handleClose} />
-            </div>
-        );
-    }
+  componentDidMount() {
+    const { taskActionCreators } = this.props;
+    const { fetchListTask } = taskActionCreators;
+    fetchListTask();
+  }
+  openForm = () => {
+    this.setState({ open: true });
+  }
+  handleClose = () => {
+    this.setState({ open: false });
+  }
+
+  // openToast = () => {
+  //   toast.success('Thành Công');
+  // }
+
+  renderBoard() {
+    const { listTask } = this.props;
+    let xhtml = null;
+    xhtml = (
+      <Grid container spacing={2}>
+        {
+          STATUSES.map((status,index) => {
+            const taskFilltered = listTask.filter(task => task.status === status.value);
+            return (
+              <TaskList task={taskFilltered} status={status} key={index} />
+            );
+          })
+        }
+      </Grid>
+    );
+    return xhtml;
+  }
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.taskboard}>
+        <Button variant="contained" color="primary" onClick={this.openForm}>
+          <span className="material-icons">add</span>
+          Thêm công việc mới!
+        </Button>
+        {/* <Box mt={5}>
+          <Button variant="contained" color="primary" onClick={this.openToast}>
+            Hiển Thị Thông Báo
+          </Button>
+        </Box> */}
+        {this.renderBoard()}
+        <TaskForm open={this.state.open} handleClose={this.handleClose} />
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(Taskboard);
+const mapStateToProps = (state) => {
+  return {
+    listTask: state.task.listTask
+  }
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    taskActionCreators: bindActionCreators(taskAction, dispatch),
+  }
+};
+
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Taskboard));
