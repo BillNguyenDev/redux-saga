@@ -6,20 +6,27 @@ import styles from './styles';
 
 import TaskItem from './../TaskItem';
 class TaskList extends Component {
-    render() {
-        const { classes, task, status } = this.props;
-        return (
-            <Grid item md={4} xs={12} key={status.value}>
-                <Box mt={2} md={2}>
-                    <div className={classes.status}>{status.label}</div>
-                </Box>
-                <div className={classes.wrapperListTask}>
-                    {task.map((task,index) => <TaskItem task={task} status={status} key={index} />)}
-                </div>
+  render() {
+    const { classes, task, status, onClickEdit, onClickDelete } = this.props;
+    return (
+      <Grid item md={4} xs={12} key={status.value}>
+        <Box mt={2} md={2}>
+          <div className={classes.status}>{status.label}</div>
+        </Box>
+        <div className={classes.wrapperListTask}>
+          {task.map((task, index) => (
+            <TaskItem
+              task={task}
+              status={status}
+              key={index}
+              onClickEdit={() => onClickEdit(task)}
+              onClickDelete={()=> onClickDelete(task)}
+            />))}
+        </div>
 
-            </Grid>
-        )
-    }
+      </Grid>
+    )
+  }
 }
 
 export default withStyles(styles)(TaskList);

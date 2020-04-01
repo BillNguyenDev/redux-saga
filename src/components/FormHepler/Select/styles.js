@@ -1,6 +1,7 @@
 const styles = () => ({
-  status: {
-
-   }
+  formControl: {
+    width: '100%',
+  },
 });
+
 export default styles;

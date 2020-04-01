@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles';
-import { bindActionCreators, compose } from 'redux';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { TextField } from '@material-ui/core';
 
@@ -23,13 +23,9 @@ class SearchBox extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return null;
-}
+const mapStateToProps = null;
 
-const mapDispatchToProps = dispatch => {
-  return null;
-}
+const mapDispatchToProps = null;
 
 const withConnect = connect(
   mapStateToProps,
