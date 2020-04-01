@@ -6,4 +6,13 @@ export const showLoading = () => ({
 
 export const hideLoading = () => ({
   type: uistyles.HIDE_LOADING,
-})
+});
+
+export const showSidebar = () => ({
+  type: uistyles.SHOW_SIDEBAR,
+});
+
+export const hideSidebar = () => ({
+  type: uistyles.HIDE_SIDEBAR,
+});
+
