@@ -10,7 +10,8 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './styles';
-
+import { withRouter } from 'react-router';
+import { compose } from 'redux';
 const menuId = 'primary-search-account-menu';
 
 class Header extends Component {
@@ -33,6 +34,13 @@ class Header extends Component {
     });
   };
 
+  handleLogout = () => {
+    const { history } = this.props;
+    if (history) {
+      history.push('/login');
+    }
+  };
+
   renderMenu = () => {
     const { anchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
@@ -46,7 +54,7 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </Menu>
     );
   };
@@ -105,4 +113,7 @@ Header.propTypes = {
   onToggleSidebar: PropTypes.func,
 };
 
-export default withStyles(styles)(Header);
+export default compose(
+  withStyles(styles),
+  withRouter,
+)(Header);
