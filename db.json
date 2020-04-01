@@ -1,12 +1,6 @@
 {
   "tasks": [
     {
-      "title": "Nguyen Ngoc Hieu",
-      "description": "Nguyen Ngoc Hieu",
-      "status": 1,
-      "id": 1
-    },
-    {
       "title": "Read book",
       "description": "Read material ui book",
       "status": 0,
@@ -31,34 +25,10 @@
       "id": 5
     },
     {
-      "title": "choi em ",
-      "description": "Hoang Thi Hong Nhung",
-      "status": 0,
-      "id": 6
-    },
-    {
       "title": "Yeu em moi ngay",
       "description": "em la ai",
       "status": 0,
       "id": 7
-    },
-    {
-      "title": "nho em ",
-      "description": "Hoang Thi Hong Nhung",
-      "status": 0,
-      "id": 8
-    },
-    {
-      "title": "Learn",
-      "description": "Learning react.js",
-      "status": 0,
-      "id": 9
-    },
-    {
-      "title": "Nguyen Ngoc Hieu",
-      "description": "Learning react.js",
-      "status": 0,
-      "id": 10
     }
   ]
 }

@@ -1,5 +1,5 @@
 import * as taskConstants from './../constants/task';
-import { toastError } from './../commons/helpers/toastHelpers';
+import { toastError, toastSuccess } from './../commons/helpers/toastHelpers';
 
 const initialsate = {
   listTask: [],
@@ -44,6 +44,7 @@ const reducer = (state = initialsate, action) => {
     }
     case taskConstants.ADD_TASK_SUCCESS: {
       const { data } = action.payload;
+      toastSuccess('Thêm công việc thành công');
       return {
         ...state,
         listTask: [data].concat(state.listTask),
@@ -64,12 +65,34 @@ const reducer = (state = initialsate, action) => {
     case taskConstants.EDIT_TASK_SUCCESS: {
       const { data } = action.payload;
       const result = state.listTask.map(item => item.id === state.taskEditing.id ? data : item);
+      toastSuccess('cập nhập công việc thành công');
       return {
         ...state,
         listTask: result,
       }
     }
     case taskConstants.EDIT_TASK_FAILED: {
+      const { error } = action.payload;
+      toastError(error);
+      return {
+        ...state,
+      }
+    }
+    case taskConstants.DELETE_TASK: {
+      return {
+        ...state,
+      }
+    }
+    case taskConstants.DELETE_TASK_SUCCESS: {
+      const { data: taskId } = action.payload;
+      const result = state.listTask.filter(item => item.id !== taskId);
+      toastSuccess('Xóa công việc thành công');
+      return {
+        ...state,
+        listTask: result,
+      }
+    }
+    case taskConstants.DELETE_TASK_FAILED: {
       const { error } = action.payload;
       toastError(error);
       return {

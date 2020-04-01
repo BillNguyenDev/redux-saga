@@ -9,3 +9,9 @@ export const toastError = error => {
     toast.error(message);
   }
 }
+
+export const toasSuccess = message => {
+  if (message !== null && typeof message !== 'undefined' && message !== '') {
+    toast.success(message);
+  }
+}

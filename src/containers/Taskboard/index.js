@@ -65,7 +65,7 @@ class Taskboard extends Component {
           <Button
             variant="contained"
             color="secondary"
-            onClick={this.handleTaskDelete(task)}
+            onClick={()=>this.handleTaskDelete(task)}
           >Xóa</Button>
           <Box mr={1}>
             <Button
@@ -79,7 +79,10 @@ class Taskboard extends Component {
   }
 
   handleTaskDelete(task) {
-    console.log(task)
+    const { taskActions } = this.props;
+    const { deleteTask } = taskActions;
+    const { id } = task
+    deleteTask(id);
   }
 
   renderBoard() {
