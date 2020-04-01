@@ -10,7 +10,7 @@ export const toastError = error => {
   }
 }
 
-export const toasSuccess = message => {
+export const toastSuccess = message => {
   if (message !== null && typeof message !== 'undefined' && message !== '') {
     toast.success(message);
   }

@@ -1,12 +1,6 @@
 {
   "tasks": [
     {
-      "title": "Read book",
-      "description": "Read material ui book",
-      "status": 0,
-      "id": 2
-    },
-    {
       "title": "Play nuchaku",
       "description": "With my friend",
       "status": 2,
@@ -21,7 +15,7 @@
     {
       "title": "Listening music",
       "description": "nho em qua",
-      "status": 0,
+      "status": 1,
       "id": 5
     },
     {

@@ -65,7 +65,7 @@ const reducer = (state = initialsate, action) => {
     case taskConstants.EDIT_TASK_SUCCESS: {
       const { data } = action.payload;
       const result = state.listTask.map(item => item.id === state.taskEditing.id ? data : item);
-      toastSuccess('cập nhập công việc thành công');
+      toastSuccess('Cập nhập công việc thành công');
       return {
         ...state,
         listTask: result,
